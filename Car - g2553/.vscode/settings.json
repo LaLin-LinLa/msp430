@@ -1,0 +1,22 @@
+{
+  "files.associations": {
+    "drv_encoder.h": "c",
+    "drv_car.h": "c",
+    "limits": "c",
+    "type_traits": "c",
+    "math_my_pid.h": "c",
+    "pid.h": "c",
+    "drv_mpu6050.h": "c",
+    "bsp_iic.h": "c",
+    "math.h": "c",
+    "inv_mpu.h": "c",
+    "stdbool.h": "c",
+    "stdint.h": "c",
+    "msp430iic.h": "c",
+    "bsp_timer.h": "c",
+    "bsp_led.h": "c",
+    "bsp_uart.h": "c",
+    "string.h": "c",
+    "bsp_key.h": "c"
+  }
+}
