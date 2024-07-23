@@ -1,0 +1,42 @@
+/*
+ * mpu6050.h
+ *
+ *  Created on: 2013-8-13
+ *      Author: Qinkai
+ */
+
+#ifndef MPU6050_H_
+#define MPU6050_H_
+
+//****************************************
+#define	SMPLRT_DIV		0x19
+#define	CONFIG			0x1A
+#define	GYRO_CONFIG		0x1B
+#define	ACCEL_CONFIG	0x1C
+#define	ACCEL_XOUT_H	0x3B
+#define	ACCEL_XOUT_L	0x3C
+#define	ACCEL_YOUT_H	0x3D
+#define	ACCEL_YOUT_L	0x3E
+#define	ACCEL_ZOUT_H	0x3F
+#define	ACCEL_ZOUT_L	0x40
+#define	TEMP_OUT_H		0x41
+#define	TEMP_OUT_L		0x42
+
+#define	GYRO_XOUT_H		0x43
+#define	GYRO_XOUT_L		0x44
+#define	GYRO_YOUT_H		0x45
+#define	GYRO_YOUT_L		0x46
+#define	GYRO_ZOUT_H		0x47
+#define	GYRO_ZOUT_L		0x48
+
+#define	PWR_MGMT_1		0x6B
+#define	WHO_AM_I		0x75
+#define MPU6050_ADDRESS_AD0_LOW     0x68 // address pin low (GND), default for InvenSense evaluation board
+#define MPU6050_ADDRESS_AD0_HIGH    0x69 // address pin high (VCC)
+#define MPU6050_DEFAULT_ADDRESS     MPU6050_ADDRESS_AD0_LOW
+#define uint8_t unsigned char
+
+extern void MPU6050Init();
+extern int GetData(uint8_t address);
+
+#endif /* MPU6050_H_ */

@@ -1,0 +1,37 @@
+
+**** Build of configuration Debug for project msp430-MPU6050 ****
+
+"T:\\sofer\\ti\\ccs\\utils\\bin\\gmake" -k all 
+ 
+Building file: "../i2c.c"
+Invoking: MSP430 Compiler
+"T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/bin/cl430" -vmsp --abi=eabi -g --include_path="T:/sofer/ti/ccs/ccs_base/msp430/include" --include_path="T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/include" --advice:power=all --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="i2c.d_raw"  "../i2c.c"
+"../i2c.c", line 39: remark #1528-D: (ULP 3.1) Detected flag polling using UCBUSY. Recommend using an interrupt combined with enter LPMx and ISR
+"../i2c.c", line 48: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+"../i2c.c", line 53: remark #1528-D: (ULP 3.1) Detected flag polling using UCBUSY. Recommend using an interrupt combined with enter LPMx and ISR
+"../i2c.c", line 70: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+"../i2c.c", line 75: remark #1527-D: (ULP 2.1) Detected SW delay loop using empty loop. Recommend using a timer module instead
+"../i2c.c", line 88: remark #1528-D: (ULP 3.1) Detected flag polling using IFG2. Recommend using an interrupt combined with enter LPMx and ISR
+"../i2c.c", line 84: remark #2553-D: (ULP 14.1) Array index (involving "I2CSendCnt") of type "int". Recommend using "unsigned int"
+Finished building: "../i2c.c"
+ 
+Building file: "../main.c"
+Invoking: MSP430 Compiler
+"T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/bin/cl430" -vmsp --abi=eabi -g --include_path="T:/sofer/ti/ccs/ccs_base/msp430/include" --include_path="T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/include" --advice:power=all --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+Finished building: "../main.c"
+ 
+Building file: "../mpu6050.c"
+Invoking: MSP430 Compiler
+"T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/bin/cl430" -vmsp --abi=eabi -g --include_path="T:/sofer/ti/ccs/ccs_base/msp430/include" --include_path="T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/include" --advice:power=all --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal --preproc_with_compile --preproc_dependency="mpu6050.d_raw"  "../mpu6050.c"
+Finished building: "../mpu6050.c"
+ 
+Building target: "msp430-MPU6050.out"
+Invoking: MSP430 Linker
+"T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/bin/cl430" -vmsp --abi=eabi -g --advice:power=all --define=__MSP430G2553__ --diag_warning=225 --display_error_number --diag_wrap=off --printf_support=minimal -z --stack_size=80 -m"msp430-MPU6050.map" --heap_size=80 -i"T:/sofer/ti/ccs/ccs_base/msp430/include" -i"T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/lib" -i"T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/include" --reread_libs --warn_sections --display_error_number --diag_wrap=off --xml_link_info="msp430-MPU6050_linkInfo.xml" --rom_model -o "msp430-MPU6050.out" "./i2c.obj" "./main.obj" "./mpu6050.obj" "../lnk_msp430g2553.cmd"  -llibc.a 
+<Linking>
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 2 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+remark #10372-D: (ULP 4.1) Detected uninitialized Port 3 in this project. Recommend initializing all unused ports to eliminate wasted current consumption on unused pins.
+Finished building target: "msp430-MPU6050.out"
+ 
+
+**** Build Finished ****

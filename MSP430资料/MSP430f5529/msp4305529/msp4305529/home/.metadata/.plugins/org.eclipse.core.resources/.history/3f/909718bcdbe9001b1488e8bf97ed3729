@@ -1,0 +1,332 @@
+#include "GY86.h"
+
+//mpu6050.c
+
+
+uchar dis[4];
+
+intdis_data;
+
+//**************************************
+
+//I2C起始信号
+
+//**************************************
+
+void I2C_Start()
+
+{
+
+    SDAOUT;
+
+    SDA1;                    //拉高数据线
+
+    SCLOUT;
+
+    SCL1;                    //拉高时钟线
+
+delayus(5);                 //延时
+
+    SDA0;                    //产生下降沿
+
+delayus(5);                  //延时
+
+    SCL0;                    //拉低时钟线
+
+}
+
+//**************************************
+
+//I2C停止信号
+
+//**************************************
+
+void I2C_Stop()
+
+{
+
+    SDAOUT;
+
+    SDA0;                    //拉低数据线
+
+    SCLOUT;
+
+    SCL1;                    //拉高时钟线
+
+delayus(5);                   //延时
+
+    SDA1;                    //产生上升沿
+
+delayus(5);                  //延时
+
+}
+
+//**************************************
+
+//I2C发送应答信号
+
+//入口参数:ack (0:ACK 1:NAK)
+
+//**************************************
+
+void I2C_SendACK(uchar ack)
+{
+
+SDAOUT;
+
+SCLOUT;
+
+if(ack) SDA1;
+
+else SDA0;
+
+//    SDA = ack;                  //写应答信号
+
+    SCL1;                    //拉高时钟线
+
+delayus(5);                  //延时
+
+    SCL0;                    //拉低时钟线
+
+delayus(5);                  //延时
+
+}
+
+//**************************************
+
+//I2C接收应答信号
+
+//**************************************
+
+uchar I2C_RecvACK()
+
+{
+
+uchar cy;
+
+    SCLOUT;
+
+    SCL1;                    //拉高时钟线
+
+    SDAIN;
+
+delayus(5);                 //延时
+
+if(SDADATA)
+
+    {
+
+cy=1;
+
+    }
+
+else
+
+    {
+
+cy=0;
+
+    }
+
+//    cy = SDA;                   //读应答信号
+
+    SCL0;                    //拉低时钟线
+
+delayus(5);                //延时
+
+    SDAOUT;
+
+return cy;
+
+
+
+}
+
+//**************************************
+
+//向I2C总线发送一个字节数据
+
+//**************************************
+
+void I2C_SendByte(uchar dat)
+
+{
+
+uchar i;
+
+    SDAOUT;
+
+    for (i=0; i<8; i++)         //8位计数器
+{
+
+if((dat<<i)&0x80)
+
+        {
+
+            SDA1;
+
+        }
+
+else
+
+        {
+
+            SDA0;
+
+        }
+
+       // SDA = cy;               //送数据口
+
+        SCLOUT;
+
+        SCL1;                //拉高时钟线
+
+delayus(5);              //延时
+
+        SCL0;                //拉低时钟线
+
+delayus(5);              //延时
+
+    }
+
+    I2C_RecvACK();
+
+}
+
+//**************************************
+
+//从I2C总线接收一个字节数据
+
+//**************************************
+
+uchar I2C_RecvByte()
+
+{
+
+uchar i;
+
+uchar dat = 0,cy;
+
+    SDAOUT;
+
+    SCLOUT;
+
+    SDA1;                    //使能内部上拉,准备读取数据,
+
+    SDAIN;
+
+    for (i=0; i<8; i++)         //8位计数器
+
+    {
+
+
+
+dat<<= 1;
+
+        SCL1;                //拉高时钟线
+
+delayus(5);             //延时
+
+if(SDADATA)
+
+        {
+
+cy=1;
+
+        }
+
+else
+
+          {
+
+cy=0;
+
+          }
+
+dat |= cy;             //读数据         SCL0;                //拉低时钟线
+
+delayus(5);             //延时
+
+    }
+
+    SDAOUT;
+
+return dat;
+
+}
+
+//**************************************
+
+//向I2C设备写入一个字节数据
+
+//**************************************
+
+void Single_WriteI2C(uchar REG_Address,uchar REG_data)
+
+{
+
+    I2C_Start();                  //起始信号
+
+    I2C_SendByte(SlaveAddress);   //发送设备地址+写信号
+
+    I2C_SendByte(REG_Address);    //内部寄存器地址
+
+    I2C_SendByte(REG_data);       //内部寄存器数据
+
+    I2C_Stop();                   //发送停止信号
+
+}
+
+//**************************************
+
+//从I2C设备读取一个字节数据
+
+//**************************************
+
+uchar Single_ReadI2C(uchar REG_Address)
+
+{
+
+ uchar REG_data;
+
+ I2C_Start();                   //起始信号
+
+ I2C_SendByte(SlaveAddress);    //发送设备地址+写信号
+
+ I2C_SendByte(REG_Address);     //发送存储单元地址从0开始
+
+ I2C_Start();                   //起始信号
+
+ I2C_SendByte(SlaveAddress+1);  //发送设备地址+读信号
+
+ REG_data=I2C_RecvByte();       //读出寄存器数据
+
+ I2C_SendACK(1);                //接收应答信号
+
+ I2C_Stop();                    //停止信号
+
+ returnREG_data;
+
+}
+
+//**************************************
+
+//初始化MPU6050
+
+//**************************************
+
+void InitMPU6050()
+
+{
+
+ Single_WriteI2C(PWR_MGMT_1, 0x00); //解除休眠状态
+
+ Single_WriteI2C(SMPLRT_DIV, 0x07);
+
+ Single_WriteI2C(CONFIG, 0x06);
+
+ Single_WriteI2C(GYRO_CONFIG, 0x18);
+
+ Single_WriteI2C(ACCEL_CONFIG, 0x01);
+
+}

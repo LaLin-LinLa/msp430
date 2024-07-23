@@ -1,0 +1,28 @@
+/*
+ * mpu6050.c
+ *
+ *  Created on: 2013-8-15
+ *      Author: Qinkai
+ */
+#include <msp430g2553.h>
+#include <stdint.h>
+#include "i2c.h"
+#include "mpu6050.h"
+int GetData(uint8_t address)
+{
+	uint8_t DataHigh,DataLow;
+	//DataHigh = I2C_Read(address);
+	//DataLow =I2C_Read(address+1);
+	return (DataHigh<<8)+DataLow;
+}
+void MPU6050Init()
+{
+	I2C_masterInit(MPU6050_DEFAULT_ADDRESS);
+	I2C_Write(PWR_MGMT_1,0x00);
+	I2C_Write(SMPLRT_DIV, 0x07);
+	I2C_Write(CONFIG, 0x06);
+	I2C_Write(GYRO_CONFIG, 0x18);
+	I2C_Write(ACCEL_CONFIG, 0x01);
+
+
+}

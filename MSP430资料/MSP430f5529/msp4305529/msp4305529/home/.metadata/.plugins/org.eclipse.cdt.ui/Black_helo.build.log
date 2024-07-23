@@ -1,0 +1,62 @@
+
+**** Build of configuration Debug for project Black_helo ****
+
+"T:\\sofer\\ti\\ccs\\utils\\bin\\gmake" -k -j 8 all -O 
+ 
+Building file: "../USER/main.c"
+Invoking: MSP430 Compiler
+"T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/bin/cl430" -vmspx --data_model=restricted --use_hw_mpy=F5 --include_path="T:/sofer/ti/ccs/ccs_base/msp430/include" --include_path="T:/TI/msp4305529/msp4305529/msp4305529(text)" --include_path="T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/include" --advice:power=all --define=__MSP430F5529__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 --preproc_with_compile --preproc_dependency="USER/main.d_raw" --obj_directory="USER"  "../USER/main.c"
+"../USER/main.c", line 41: warning #78-D: this declaration has no storage class or type specifier
+"../USER/main.c", line 41: warning #78-D: this declaration has no storage class or type specifier
+"../USER/main.c", line 41: warning #78-D: this declaration has no storage class or type specifier
+"../USER/main.c", line 41: warning #78-D: this declaration has no storage class or type specifier
+"../USER/main.c", line 43: warning #78-D: this declaration has no storage class or type specifier
+"../USER/main.c", line 96: warning #179-D: variable "i" was declared but never referenced
+"../USER/main.c", line 96: remark #1535-D: (ULP 8.1) variable "i" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+"../USER/main.c", line 103: warning #179-D: variable "i" was declared but never referenced
+"../USER/main.c", line 103: remark #1535-D: (ULP 8.1) variable "i" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+"../USER/main.c", line 252: warning #167-D: too few arguments in function call
+"../USER/main.c", line 212: warning #179-D: variable "k" was declared but never referenced
+"../USER/main.c", line 213: warning #179-D: variable "result" was declared but never referenced
+"../USER/main.c", line 213: warning #179-D: variable "ax" was declared but never referenced
+"../USER/main.c", line 213: warning #179-D: variable "ay" was declared but never referenced
+"../USER/main.c", line 213: warning #179-D: variable "az" was declared but never referenced
+"../USER/main.c", line 213: warning #179-D: variable "gx" was declared but never referenced
+"../USER/main.c", line 213: warning #179-D: variable "gy" was declared but never referenced
+"../USER/main.c", line 213: warning #179-D: variable "gz" was declared but never referenced
+"../USER/main.c", line 244: remark #1530-D: (ULP 5.1) Detected divide operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+"../USER/main.c", line 212: remark #1535-D: (ULP 8.1) variable "k" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+"../USER/main.c", line 267: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../USER/main.c", line 277: remark #1538-D: (ULP 10.1) ISR P1_ISR calls function OLED_ShowString. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 282: remark #1538-D: (ULP 10.1) ISR P1_ISR calls function OLED_ShowString. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 298: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../USER/main.c", line 305: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowString. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 309: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function GetData. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 310: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 311: remark #1530-D: (ULP 5.1) Detected divide operation(s). Recommend moving them to RAM during run time or not using as these are processing/power intensive
+"../USER/main.c", line 316: remark #1544-D: (ULP 13.1) Detected loop counting up. Recommend loops count down as detecting zeros is easier
+"../USER/main.c", line 325: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowString. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 328: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 329: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 330: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 331: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 332: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 333: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 334: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 335: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 336: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 337: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 338: remark #1538-D: (ULP 10.1) ISR P2_ISR calls function OLED_ShowNum. Recommend moving function call away from ISR, or inlining the function, or using pragmas
+"../USER/main.c", line 42: remark #1535-D: (ULP 8.1) variable "line" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+"../USER/main.c", line 44: remark #1535-D: (ULP 8.1) variable "duojidafuduzuo" is used as a constant. Recommend declaring variable as either 'static const' or 'const'
+Finished building: "../USER/main.c"
+ 
+Building target: "Black_helo.out"
+Invoking: MSP430 Linker
+"T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/bin/cl430" -vmspx --data_model=restricted --use_hw_mpy=F5 --advice:power=all --define=__MSP430F5529__ -g --printf_support=minimal --diag_warning=225 --diag_wrap=off --display_error_number --silicon_errata=CPU21 --silicon_errata=CPU22 --silicon_errata=CPU23 --silicon_errata=CPU40 -z -m"Black_helo.map" --heap_size=160 --stack_size=160 --cinit_hold_wdt=on -i"T:/sofer/ti/ccs/ccs_base/msp430/include" -i"T:/sofer/ti/ccs/ccs_base/msp430/lib/5xx_6xx_FRxx" -i"T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/lib" -i"T:/sofer/ti/ccs/tools/compiler/ti-cgt-msp430_20.2.5.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Black_helo_linkInfo.xml" --use_hw_mpy=F5 --rom_model -o "Black_helo.out" "./GO/Black_DELAY.obj" "./GO/Black_GPIO.obj" "./GO/Black_INTERRUPT.obj" "./GO/Black_KEY.obj" "./GO/Black_LED.obj" "./GO/Black_OLED.obj" "./GO/Black_PWM.obj" "./GO/Black_USART.obj" "./GO/GY86.obj" "./USER/Black_Init.obj" "./USER/Black_readme.obj" "./USER/main.obj" "../lnk_msp430f5529.cmd"  -llibmath.a -llibc.a 
+<Linking>
+remark #10371-D: (ULP 1.1) Detected no uses of low power mode state changing instructions
+Finished building target: "Black_helo.out"
+ 
+
+**** Build Finished ****

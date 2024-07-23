@@ -1,0 +1,26 @@
+/**
+  * @file    main.c
+  * @author  black helo
+  * @version V1.0
+  * @date    2020-10-08
+  * @brief   主函数
+  */
+
+
+#include "Black_All.h"
+
+void main(void)
+{
+    Init();
+    LED0_STATE(0);//操作led0 灭
+    LED1_STATE(0);//操作led1 灭
+    while(1)
+    {
+        LED0_STATE(2);//操作led0 状态翻转
+        LED1_STATE(2);//操作led1 状态翻转
+        delay(500);//延时
+    }
+
+}
+
+

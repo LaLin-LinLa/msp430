@@ -1,0 +1,31 @@
+/**
+  * @file    main.c
+  * @author  black helo
+  * @version V1.0
+  * @date    2020-10-08
+  * @brief   主函数
+  */
+
+#include   <msp430.h>
+#include "Black_All.h"
+
+void main(void)
+{
+    WDTCTL=WDTPW+WDTHOLD;    //关闭看门狗
+    P1DIR|=(BIT0+BIT1+BIT2+BIT3+BIT4+BIT5);   //P1.0-P1.5方向为输出， BITX 的定义在 msp430.h 中
+    P1OUT&=~(BIT0+BIT1+BIT2+BIT3+BIT4+BIT5);   //清零  /*P1SEL=0X00; PXDS=0X00;默认*/
+    P4DIR|=(BIT0+BIT1+BIT2+BIT3+BIT4+BIT7);
+    P4OUT&=~(BIT0+BIT1+BIT2+BIT3+BIT4+BIT7);   //清零  /*P1SEL=0X00; PXDS=0X00;默认*/
+    int i=0,j=0;
+    while(1)
+    {
+        P1OUT=0x01;
+        P4OUT=0x80;
+        delay(500);
+        P1OUT=0x02;
+        delay(500);
+        P4OUT=0x00;
+    }
+}
+
+

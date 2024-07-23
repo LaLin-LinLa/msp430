@@ -1,0 +1,1 @@
+"./app/motor.obj" "./driver/DELAY.obj" "./driver/GPIO.obj" "./driver/Interrupt.obj" "./driver/Key.obj" "./driver/LED.obj" "./driver/OLED.obj" "./driver/PWM.obj" "./driver/TIME.obj" "./driver/USART.obj" "./user/Init.obj" "./user/main.obj" "../lnk_msp430f5529.cmd" -llibmath.a -llibc.a 

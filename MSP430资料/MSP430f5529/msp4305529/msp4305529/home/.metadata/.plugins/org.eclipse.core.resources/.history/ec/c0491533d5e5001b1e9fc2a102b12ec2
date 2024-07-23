@@ -1,0 +1,45 @@
+/**
+  * @file    main.c
+  * @author  black helo
+  * @version V1.0
+  * @date    2020-10-08
+  * @brief   主函数
+  */
+
+#include   <msp430.h>
+#include "Black_All.h"
+/*
+void main(void)
+{
+    WDTCTL=WDTPW+WDTHOLD;    //关闭看门狗
+    P1DIR|=(BIT0+BIT1+BIT2+BIT3+BIT4+BIT5);   //P1.0-P1.5方向为输出， BITX 的定义在 msp430.h 中
+    P1OUT&=~(BIT0+BIT1+BIT2+BIT3+BIT4+BIT5);   //清零  P1SEL=0X00; PXDS=0X00;默认
+    P4DIR|=(BIT0+BIT1+BIT2+BIT3+BIT4+BIT7);
+    P4OUT&=~(BIT0+BIT1+BIT2+BIT3+BIT4+BIT7);   //清零  P1SEL=0X00; PXDS=0X00;默认
+    int i=0,j=0;
+    while(1)
+    {
+        P1OUT=0x01;
+        P4OUT=0x80;
+        delay(500);
+        P4OUT=0x00;
+        P1OUT=0x02;
+        delay(500);
+    }
+}*/
+
+void main(void)
+{
+    WDTCTL = WDTPW | WDTHOLD;   // Stop watchdog timer
+    P1DIR|=0x01;
+    _EINT();//开总中断，作用相当于GIE
+    TA0CCTL0=CCIE;
+//开启比较中断（比较/捕获中断使能控制位）（以后无论使用定时器溢出中断还是比较捕获中断，都建议打开这个中断控制位）
+    TA0CTL=TASSEL0+MC_1+TACLR;//参考时钟ACLK、增计数模式、预先清空TAR
+    TA0CCR0=32768;//中断服务程序执行的时间间隔大约1s
+}
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void TIMER0_A0(void)
+{
+    P1OUT^=0x01;
+}
