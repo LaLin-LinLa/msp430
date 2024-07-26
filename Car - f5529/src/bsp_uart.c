@@ -69,7 +69,7 @@ void UART1SendString(char *pbuff)
 void uart0_printf(const char *fmt,...)
 {
     va_list ap;
-    char string[20];
+    char string[40];
     va_start(ap,fmt);
     vsprintf(string,fmt,ap);//此处也可以使用sprintf函数，用法差不多，稍加修改即可，此处略去
     UART0SendString(string);
@@ -83,7 +83,7 @@ void uart0_printf(const char *fmt,...)
 void uart1_printf(const char *fmt,...)
 {
     va_list ap;
-    char string[20];
+    char string[40];
     va_start(ap,fmt);
     vsprintf(string,fmt,ap);//此处也可以使用sprintf函数，用法差不多，稍加修改即可，此处略去
     UART1SendString(string);

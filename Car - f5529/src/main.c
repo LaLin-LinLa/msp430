@@ -31,25 +31,26 @@ int main(void)
     bsp_uart1_init();
     drv_car_init(&car_control);
 
-//    OLED_Init();
-//    OLED_Clear();
-//    OLED_ShowString(30,1, "2024NUEDC",16);
-//    OLED_ShowString(35,4, "Welcome",16);
+    OLED_Init();
+    OLED_Clear();
+    OLED_ShowString(30,1, "2024NUEDC",16);
+    OLED_ShowString(35,4, "Welcome",16);
 
+    __delay_ms(2000);
 //   while(mpu_dmp_init())
 //   {
 //       __delay_ms(20);
 //   }
 
     __bis_SR_register(GIE);    //开启总中断
-     while(drv_mpu6050_init());
+    // while(drv_mpu6050_init());
 
 
 
-//    OLED_Clear();
-//    OLED_ShowString(20,0, "MOTOR_TEST",16);
-//    OLED_ShowString(20,2, "VEL_A",16);
-//    OLED_ShowString(20,4, "VEL_B",16);
+    OLED_Clear();
+    OLED_ShowString(20,0, "MOTOR_TEST",16);
+    OLED_ShowString(20,2, "VEL_A",16);
+    OLED_ShowString(20,4, "VEL_B",16);
 
 //    OLED_Clear();
 //    OLED_ShowString(20,0, "RED_POINT",16);
@@ -63,30 +64,44 @@ int main(void)
 //    OLED_ShowString(20,0, "MPU_TEST",16);
 
     while(1){
-        LED1(2);
-        __delay_ms(100);
+
         //motor_test
 //        time = Get_Tick();
-//           if(key_scan(1)==1){
-//              if(!flag)
-//              {
-//                  vel++;
-//                  if(vel==60){
-//                      vel=60;
-//                      flag=1;
-//                  }
-//              }else{
-//                  vel--;
-//                  if(vel==0){
-//                      vel=0;
-//                      flag=0;
-//                  }
-//              }
-//              Car_control(&car_control,vel,0);
-//         }
-//        OLED_ShowNum(70,2,car_control.vel_A[0],2,16);
-//        OLED_ShowNum(70,4,car_control.vel_B[0],2,16);
-//        uart1_printf("%d,%d,%d,%d,%d\n",car_control.vel_A[0],car_control.vel_B[0],car_control.vel_A[2],car_control.vel_B[2],vel);
+           if(key_scan(1)==1){
+              if(!flag)
+              {
+                  vel++;
+                  if(vel>=50){
+                      vel=50;
+                      flag=1;
+                  }
+              }else{
+                  vel--;
+                  if(vel<=-50){
+                      vel=-50;
+                      flag=0;
+                  }
+              }
+              Car_control(&car_control,vel,0);
+         }
+        if(car_control.vel_A[0]>=0){
+            OLED_ShowString(62,2,"+",16);
+            OLED_ShowNum(70,2,car_control.vel_A[0],3,16);
+        }
+        else{
+            OLED_ShowString(62,2,"-",16);
+            OLED_ShowNum(70,2,~car_control.vel_A[0],3,16);
+        }
+
+        if(car_control.vel_B[0]>=0){
+            OLED_ShowString(62,4,"+",16);
+            OLED_ShowNum(70,4,car_control.vel_B[0],3,16);
+        }
+        else{
+            OLED_ShowString(62,4,"-",16);
+            OLED_ShowNum(70,4,~car_control.vel_B[0],3,16);
+        }
+        uart1_printf("%d,%d,%d,%d,%d\n",car_control.vel_A[0],car_control.vel_B[0],car_control.vel_A[2],car_control.vel_B[2],vel);
 
 
 //        OLED_ShowString(20,2, rxbuff1,8);   //配对码2077
@@ -158,18 +173,7 @@ __interrupt void TIMA1_A1_ISR(void)
 __interrupt void Port1_ISR(void)
 {
 
-    if(P1IFG & BIT4)//判断是否是P1.4产生中断
-    {
-        P1IFG &= ~BIT4;//清除标志位
-        __bis_SR_register(GIE);//允许中断嵌套
-        car_control.cnt_A++;
-    }
-    if(P1IFG & BIT5)//判断是否是P1.5产生中断
-    {
-        P1IFG &= ~BIT5;//清除标志位
-        __bis_SR_register(GIE);//允许中断嵌套
-        car_control.cnt_B++;
-    }
+    update_encoder_cnt(&car_control);
 }
 
 #pragma vector = USCI_A0_VECTOR
